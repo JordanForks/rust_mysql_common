@@ -22,6 +22,7 @@ impl ConvIr<NaiveDateTime> for ParseIr<NaiveDateTime> {
     fn new(value: Value) -> Result<ParseIr<NaiveDateTime>, FromValueError> {
         let result = match value {
             Value::Date(year, month, day, hour, minute, second, micros) => {
+                eprintln!("debug = y:{} m:{}, d:{}, h:{}, m:{}, s:{}, us:{}", year, month, day, hour, minute, second, micros);
                 let date = NaiveDate::from_ymd_opt(year.into(), month.into(), day.into());
                 let time = NaiveTime::from_hms_micro_opt(
                     hour.into(),
